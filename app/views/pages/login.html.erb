@@ -1,2 +1,10 @@
 <h1><%= @heading %></h1>
-<a href="/login/credentials">Login with User Credentials</a>
+<style>
+button{
+    display:block;
+    margin-bottom:1em;
+}
+</style>
+<button onclick="location.href = '/login/credentials';">Login with User Credentials</button>
+<button disabled onclick="location.href = '/login/facebook';">Login with Facebook</button>
+<button disabled onclick="location.href = '/login/google';">Login with Google</button>

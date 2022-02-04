@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   ## Login Related
   get "/login", to: "pages#login"
   get "/login/credentials", to: "pages#login_credentials"
+  get "/login/submit", to: "pages#login_credentials_submit"
 
-  # Chat Related
-  get "/chat/rooms", to: "pages#rooms"
-  get "/chat/rooms/:id", to: "pages#room"
+  resources :rooms
 
 end

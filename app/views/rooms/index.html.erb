@@ -1,0 +1,22 @@
+<style>
+.room{
+    display:block;
+    margin-bottom:0.5em;
+}
+.room a{
+    display:inline-block;
+    min-width:100px;
+    margin-right:1em;
+}
+</style>
+<h1>Chat Rooms</h1>
+
+<% @rooms.each do |room| %>
+    <div class="room">
+        <a href="rooms/<%= room.id %>">
+            <%= room.title %>
+        </a>
+        <span><%= room.description %></span>
+        <span>﹀</span>
+    </div>
+<% end %>

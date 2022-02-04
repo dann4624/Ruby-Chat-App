@@ -1,0 +1,64 @@
+<style>
+    :root {
+    --chat_width: 600px;
+    --chat_height: 400px;
+    --chat_padding: 1em;
+    --border_width: 1px;
+    --input_button_width: 5em;
+    }
+
+    #messages{
+        border: var(--border_width) solid black;
+        height: var(--chat_height);
+        width: var(--chat_width);
+        padding: var(--chat_padding);
+        overflow:auto;
+    }
+
+    #input{
+        display:block;
+        margin-top:1em;
+        width: calc(var(--chat_width) + (2 * var(--chat_padding)));
+        height: auto;
+    }
+
+    #input input[type=text]{
+        display: inline-block;
+        width:calc(100% - var(--input_button_width) - 10px - (2 * var(--border_width)));
+    }
+
+    #input input[type=submit]{
+        width: var(--input_button_width);
+    }
+
+    .timestamp {
+        padding-right:10px;
+    }
+    
+    .message {
+    }
+</style>
+<h1><%= @room.title %></h1>
+<button id="reload_button">Reload</button>
+<div id="messages">
+    <table>
+        <% @messages.each do |message| %>
+            <tr>
+                <td class="timestamp"><%= message.date %></td>
+                <td class="message"><%= message.body %></td>
+            </tr>
+        <% end %>
+    </table>
+</div>
+<div id="input">
+    <%= form_with model: @message do |form| %>
+        <%= hidden_field_tag 'room', @room.id  %>
+        <%= hidden_field_tag 'user', "1"  %>
+        <%= form.text_field :body, placeholder: "Your Message",maxlength: 54 %>
+        <%= form.submit "Send" %>
+    </div>
+    <% end %>
+</div>
+
+
+
