@@ -1,27 +1,12 @@
 class MessagesController < ApplicationController
-    # Specific Room
-    def new
-
-
-    end     
-
-    def new
-        @message = Message.new
+    def create
+        @current_user = current_user
+        @message = Message.create(room_id: params[:room_id], user_id:params[:user_id], content: msg_params[:content], )
       end
     
-      def create
-        @message = Message.new(date: DateTime.now(), user: params[:user],room: params[:room] body: params[:body])
+      private
     
-        if @message.save
-          redirect_to @message.room
-        else
-          render :new, status: :unprocessable_entity
-        end
+      def msg_params
+        params.require(:message).permit(:content)
       end
-
-      
-    private
-    def message_params
-        params.require(:message).permit(:user,:room, :body)
-    end
 end

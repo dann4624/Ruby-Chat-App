@@ -10,26 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_045131) do
+ActiveRecord::Schema.define(version: 2022_02_07_115137) do
 
   create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "date", precision: 6
-    t.integer "room"
-    t.integer "user"
-    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.text "displayname"
+    t.text "username"
+    t.text "avatar"
     t.text "email"
     t.text "password"
-    t.boolean "verified"
-    t.boolean "admin"
-    t.boolean "banned"
+    t.boolean "verified", default: false
+    t.boolean "admin", default: false
+    t.boolean "banned", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
 end

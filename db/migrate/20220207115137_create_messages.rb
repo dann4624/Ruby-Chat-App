@@ -1,10 +1,9 @@
 class CreateMessages < ActiveRecord::Migration[7.0]
   def change
     create_table :messages do |t|
-      t.datetime :date
-      t.integer :room
-      t.integer :user
-      t.text :body
+      t.references :user, null: false, foreign_key: true
+      t.references :room, null: false, foreign_key: true
+      t.text :content
 
       t.timestamps
     end

@@ -1,7 +1,7 @@
 <style>
     :root {
-    --chat_width: 600px;
-    --chat_height: 400px;
+    --chat_width: 800px;
+    --chat_height: 600px;
     --chat_padding: 1em;
     --border_width: 1px;
     --input_button_width: 5em;
@@ -12,6 +12,7 @@
         height: var(--chat_height);
         width: var(--chat_width);
         padding: var(--chat_padding);
+        margin-top:1em;
         overflow:auto;
     }
 
@@ -31,34 +32,35 @@
         width: var(--input_button_width);
     }
 
+    .message {
+    }
+
+    .avatar {
+        padding-right:10px;
+    }
+
+    .name {
+        padding-right:10px;
+    }
+
     .timestamp {
         padding-right:10px;
     }
-    
-    .message {
+    .button_to{
+        display:inline;
     }
+    
+
 </style>
 <h1><%= @room.title %></h1>
-<button id="reload_button">Reload</button>
+<% if @current_user.admin %>
+    <%= button_to "Edit", edit_room_path(@room), :method => :get %>
+    <%= button_to "Delete", @room, :method => :delete %>
+<% end %>
+
 <div id="messages">
     <table>
-        <% @messages.each do |message| %>
-            <tr>
-                <td class="timestamp"><%= message.date %></td>
-                <td class="message"><%= message.body %></td>
-            </tr>
-        <% end %>
+        <%= render @messages %>
     </table>
 </div>
-<div id="input">
-    <%= form_with model: @message do |form| %>
-        <%= hidden_field_tag 'room', @room.id  %>
-        <%= hidden_field_tag 'user', "1"  %>
-        <%= form.text_field :body, placeholder: "Your Message",maxlength: 54 %>
-        <%= form.submit "Send" %>
-    </div>
-    <% end %>
-</div>
-
-
-
+<%= render partial: 'layouts/new_message_form' %>

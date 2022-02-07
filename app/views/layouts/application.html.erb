@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+  <style>
+  nav{
+    margin-bottom:1em;
+  }
+  nav a{
+    margin-right:1em;
+  }
+  </style>
   <head>
     <title>Chat App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,7 +20,9 @@
   <header>
     <nav>
       <%= link_to "Home", root_path %>
-      <%= link_to "Chat Rooms", '/rooms' %>
+      <% if @current_user  %>
+        <%= button_to "Log Out", signout_path, :method => :delete %>
+      <% end %>
     </nav>
   </header>
   <body>

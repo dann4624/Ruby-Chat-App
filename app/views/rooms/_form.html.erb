@@ -1,0 +1,32 @@
+<style>
+label{
+    display:inline-block;
+    font-weight:bold;
+    vertical-align:top;
+    min-width:100px;
+}
+input,textarea{
+    display:inline;
+}
+</style>
+<%= form_with model: @room do |form| %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <% @room.errors.full_messages_for(:title).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+    <% @room.errors.full_messages_for(:description).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+<br>
+<div>
+    <label></label>
+    <%= form.submit %>
+</div>
+<% end %>

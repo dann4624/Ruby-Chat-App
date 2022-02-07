@@ -1,13 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: 2022-02-02 05:48:10
-  room: 1
-  user: 1
-  body: MyText
+  user: one
+  room: one
+  content: MyText
 
 two:
-  date: 2022-02-02 05:48:10
-  room: 1
-  user: 1
-  body: MyText
+  user: two
+  room: two
+  content: MyText
