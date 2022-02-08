@@ -1,6 +1,6 @@
 <div id="input">
-  <%= form_with(model: @message, remote: true) do |f| %>
-    <%= f.text_field :content, id: 'chat-text', autocomplete: 'off' %>
-    <%= f.submit data: { disable_with: false } %>
+  <%= form_with(model: @message, url: room_messages_url(room_id: @room.id), local: true) do |form| %>
+    <%= form.text_field :content, id: 'chat-text', autocomplete: 'off', required: true %>  
+    <%= form.submit 'Send' %>
   <% end %>
 </div>

@@ -41,7 +41,7 @@
 
   <h4> Chat Rooms </h4>    
     <% if @current_user.admin %>
-        <%= button_to "Create New Chat Room", new_room, :method => :delete %>
+        <%= button_to "Create New Chat Room", new_room_url, :method =>  :get %>
         <br><br>
     <% end %>
 
@@ -49,5 +49,10 @@
     <div id="rooms">
         <%= render @rooms %>
     </div>
-
+    
+    <% flash.each do |type, msg| %>
+    <div>
+        <%= msg %>
+    </div>
+    <% end %>
 </div>

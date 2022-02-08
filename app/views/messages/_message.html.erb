@@ -1,5 +1,6 @@
 <tr>
-    <td class="avatar"><%= message.user.avatar %></td>
+    <%= button_to "New", action: "new" %>
+    <td class="avatar"><img src="<%= message.user.avatar %>" alt="<%= message.user.username %>'s Avatar"></td>
     <td class="name"><%= message.user.username %></td>
     <td class="timestamp"><%= message.created_at %></td>
     <td class="message"><%= message.content %></td>

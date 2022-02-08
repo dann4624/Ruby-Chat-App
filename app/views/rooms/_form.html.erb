@@ -5,7 +5,7 @@ label{
     vertical-align:top;
     min-width:100px;
 }
-input,textarea{
+input, textarea{
     display:inline;
 }
 </style>
@@ -13,7 +13,9 @@ input,textarea{
     <%= form.label :title %>
     <%= form.text_field :title %>
     <% @room.errors.full_messages_for(:title).each do |message| %>
-    <div><%= message %></div>
+        <div>
+            <%= message %>
+        </div>
     <% end %>
 </div>
 
@@ -21,7 +23,9 @@ input,textarea{
     <%= form.label :description %>
     <%= form.text_area :description %>
     <% @room.errors.full_messages_for(:description).each do |message| %>
-    <div><%= message %></div>
+        <div>
+            <%= message %>
+        </div>
     <% end %>
 </div>
 <br>

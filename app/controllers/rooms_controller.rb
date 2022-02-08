@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
-    # List All Rooms
     def index
         @current_user = current_user
         redirect_to '/signin' unless @current_user
@@ -7,12 +6,11 @@ class RoomsController < ApplicationController
         @users = User.all_except(@current_user)
     end   
     
-     # Specific Room
     def show
         @current_user = current_user
         @room = Room.find(params[:id])
         @users = User.all_except(@current_user)
-        @messages = Message.where(room_id:@room )
+        @messages = Message.where(room_id:@room ).last(50)
     end     
 
     def new
@@ -48,7 +46,7 @@ class RoomsController < ApplicationController
         @room.destroy
     
         redirect_to rooms_path, status: :see_other
-      end
+    end
 
     private
     def room_params

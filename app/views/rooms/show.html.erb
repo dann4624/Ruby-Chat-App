@@ -1,6 +1,6 @@
 <style>
     :root {
-    --chat_width: 800px;
+    --chat_width: 1000px;
     --chat_height: 600px;
     --chat_padding: 1em;
     --border_width: 1px;
@@ -39,25 +39,54 @@
         padding-right:10px;
     }
 
+    .avatar img{
+        display:inline-block;
+        width:25px;
+        height:25px;
+        border: 1px solid black;
+        overflow: hidden;
+    }
+
     .name {
         padding-right:10px;
+        min-width:50px;
     }
 
     .timestamp {
         padding-right:10px;
     }
+
     .button_to{
         display:inline;
+
+    }
+
+    #room_edit_button{
+        margin-right: 0px;
     }
     
-
+    #room_delete_button{
+        margin-right: 20px;
+    }
+    
+    .response{
+        display:inline-block;
+        margin-left:10px;
+        margin-right:10px;
+    }
 </style>
 <h1><%= @room.title %></h1>
 <% if @current_user.admin %>
-    <%= button_to "Edit", edit_room_path(@room), :method => :get %>
-    <%= button_to "Delete", @room, :method => :delete %>
+    <%= button_to "Edit Room", edit_room_path(@room), :method => :get, :id => 'room_edit_button' %>
+    <%= button_to "Delete Room", @room, :method => :delete, :id => 'room_delete_button' %>
 <% end %>
-
+<span><%= @room.description %></span>
+<% flash.each do |type, msg| %>
+  <div class='response'>
+    <%= msg %>
+  </div>
+<% end %>
+<%= turbo_stream_from @room %>
 <div id="messages">
     <table>
         <%= render @messages %>
