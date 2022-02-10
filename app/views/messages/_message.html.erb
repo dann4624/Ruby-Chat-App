@@ -1,7 +1,25 @@
 <tr>
-    <%= button_to "New", action: "new" %>
-    <td class="avatar"><img src="<%= message.user.avatar %>" alt="<%= message.user.username %>'s Avatar"></td>
-    <td class="name"><%= message.user.username %></td>
-    <td class="timestamp"><%= message.created_at %></td>
-    <td class="message"><%= message.content %></td>
+    <% if @current_user %>
+        <td class="admin_button_container">
+            <% if @current_user.admin %>
+                <%= button_to "EDIT", edit_room_message_path(room_id:message.room_id,id:message.id) , :method => "get" %>
+                <%= button_to "DEL", room_message_path(room_id:message.room_id,id:message.id), :method => :delete %>
+            <% end %>
+        </td>
+        <td>
+
+        </td>
+    <% end %>
+    <td class="avatar">
+        <img src="<%= message.user.avatar %>" alt="<%= message.user.username %>'s Avatar">
+    </td>
+    <td class="name">
+        <%= link_to message.user.username, message.user %>
+    </td>
+    <td class="timestamp">
+        <%= message.created_at %>
+    </td>
+    <td class="message">
+        <%= message.content %>
+    </td>
 </tr>

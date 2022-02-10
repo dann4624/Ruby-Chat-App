@@ -1,0 +1,6 @@
+<h1>Edit Message</h1>
+
+<%= form_with(model: @message, url: room_message_path(room_id: @room_id), method: :patch) do |form| %>
+<%= form.text_field :content, id: 'chat-text', autocomplete: 'off', required: true %>  
+    <%= form.submit 'Update' %>
+<% end %>

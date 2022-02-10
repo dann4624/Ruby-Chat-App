@@ -21,8 +21,8 @@
         margin-right:10px;
     }
 </style>
-<h1><%= @user.username %></h1>
-<% if @user == current_user || current_user.admin %>
+<% if @user == current_user%>
     <%= button_to "Edit User", edit_user_path(@user), :method => :get, :id => 'room_edit_button' %>
-    <%= button_to "Delete User", @room, :method => :delete, :id => 'room_delete_button' %>
 <% end %>
+<h1><%= @user.username %></h1>
+<img src="<%= @user.avatar %>" alt="<%= @user.username %>'s Avatar">

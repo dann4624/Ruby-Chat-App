@@ -2,18 +2,19 @@ class RoomsController < ApplicationController
     def index
         @current_user = current_user
         redirect_to '/signin' unless @current_user
-        @rooms = Room.all
+        @rooms = Room.includes(:messages).order('messages.id DESC' )
         @users = User.all_except(@current_user)
     end   
     
     def show
         @current_user = current_user
+        redirect_to '/signin' unless @current_user
         @room = Room.find(params[:id])
-        @users = User.all_except(@current_user)
         @messages = Message.where(room_id:@room ).last(50)
     end     
 
     def new
+        @current_user = current_user
         @room = Room.new
     end
     
@@ -28,6 +29,10 @@ class RoomsController < ApplicationController
     end
 
     def edit
+        @current_user = current_user
+        if @current_user.admin != true 
+          redirect_to rooms_path
+        end
         @room = Room.find(params[:id])
     end
 

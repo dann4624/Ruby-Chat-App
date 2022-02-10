@@ -1,0 +1,59 @@
+<style>
+label{
+    display:inline-block;
+    font-weight:bold;
+    vertical-align:top;
+    min-width:100px;
+}
+
+input, textarea{
+    display:inline;
+}
+</style>
+<%= form_with model: @user do |form| %>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+    <% @user.errors.full_messages_for(:username).each do |message| %>
+        <div>
+            <%= message %>
+        </div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.label :avatar %>
+    <%= form.url_field  :avatar %>
+    <% @user.errors.full_messages_for(:avatar).each do |message| %>
+        <div>
+            <%= message %>
+        </div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+    <% @user.errors.full_messages_for(:email).each do |message| %>
+        <div>
+            <%= message %>
+        </div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    <% @user.errors.full_messages_for(:password).each do |message| %>
+        <div>
+            <%= message %>
+        </div>
+    <% end %>
+</div>
+
+<br>
+
+<div>
+    <label></label>
+    <%= form.submit %>
+</div>
+<% end %>

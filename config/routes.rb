@@ -16,5 +16,10 @@ Rails.application.routes.draw do
   resources :users
   resources :rooms do
     resources :messages
+      collection do
+        delete "/:room_id/delete_all" => 'messages#delete_all', as: :delete_all
+      end
   end
+
+  delete '/rooms/:room_id/messages', to: 'messages#delete_all', as: :delete_all
 end

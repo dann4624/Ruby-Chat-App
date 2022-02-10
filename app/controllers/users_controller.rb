@@ -1,16 +1,7 @@
 class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
-    end
-    
-    def update
-        @user = User.find(params[:id])
-    
-        if @user.update(user_params)
-          redirect_to @user
-        else
-          render :edit, status: :unprocessable_entity
-        end
+        @current_user = current_user
     end
 
     def new
@@ -26,15 +17,25 @@ class UsersController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     end
-
-    def destroy
-        @user = User.find(params[:id])
-        if @user == current_user
-            log_out if logged_in?
-        end
-        @user.destroy
-        redirect_to rooms_path, status: :see_other
+    
+    def edit
+      @user = User.find(params[:id])
+      @current_user = current_user
+      redirect_to '/signin' unless @current_user
+      if @current_user != @user
+        redirect_to rooms_path
+      end
     end
+
+    def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+          redirect_to @user
+        else
+          render :edit, status: :unprocessable_entity
+        end
+    end
+
 
     def user_params
         params.require(:user).permit(:avatar,:username,:email,:password)

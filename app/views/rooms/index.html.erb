@@ -27,12 +27,36 @@
 .button_to{
     display:inline-block;
 }
+
+.user_container{
+    margin-bottom:0.5em;
+}
+
+.room_container{
+    margin-bottom:0.5em;
+}
+
+.room_container:nth-child(odd){
+    background:gray;
+}
+
+.room_container:nth-child(even){
+    background:darkgray;
+}
+
+.user_container:nth-child(odd){
+    background:gray;
+}
+
+.user_container:nth-child(even){
+    background:darkgray;
+}
+
+
+.room_container.n
 </style>
 <div class="container">
-
-  Hi <%= @current_user.username %>!
-  <br><br>
-  <%= button_to "Refresh", "", { :onclick => "history.go(0)" } %>
+  <%= button_to "Refresh Page", "", { :onclick => "history.go(0)" } %>
   <h4> Users </h4>
     <%= turbo_stream_from "users" %>
     <div id="users">

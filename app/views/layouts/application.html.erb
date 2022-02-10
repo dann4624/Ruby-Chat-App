@@ -4,9 +4,19 @@
   nav{
     margin-bottom:1em;
   }
+
   nav a{
     margin-right:1em;
   }
+
+  nav .button_to{
+    display:inline-block;
+    margin-left:50px;
+  }
+
+  #username{
+    margin-right:1em;
+  }  
   </style>
   <head>
     <title>Chat App</title>
@@ -21,6 +31,13 @@
     <nav>
       <%= link_to "Home", root_path %>
       <% if @current_user  %>
+        <span id="username">
+          <%= @current_user.username %>
+        </span>
+        <% if @current_user.admin  %>
+          <span id="admin_user">Admin</span>
+        <% end %>
+        <%= button_to "Edit User", edit_user_path(@current_user.id), :method => "get" %>
         <%= button_to "Log Out", signout_path, :method => :delete %>
       <% end %>
     </nav>
