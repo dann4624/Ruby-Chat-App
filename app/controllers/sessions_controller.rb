@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+    def index
+      @current_user = current_user
+      redirect_to rooms_path if @current_user
+    end
 
     def create
       user = User.find_by(email: params[:session][:email], password:params[:session][:password])

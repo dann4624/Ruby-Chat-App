@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # Defines the root path route ("/")
-  root 'rooms#index'
+  root 'sessions#index'
 
   ## Login Related
   ### Email / Password Related
-  get '/signin', to: 'sessions#new'
+  get '/signin', to: 'sessions#new', as: :signin
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
 

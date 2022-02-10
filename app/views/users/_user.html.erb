@@ -1,4 +1,9 @@
-<div class="user_container" style="vertical-align:center;"> 
-    <img src="<%= user.avatar %>" style="vertical-align:middle;width:25px;height:25px;">
-    <%= link_to user.username, user %> 
+<div class="user_container" onclick="window.location='users/<%= user.id %>'"> 
+    <img src="<%= user.avatar %>">
+    <span class="username">
+        <%= user.username %>
+    </span>
+    <span class="chevron">
+        ➤
+    </span>
 </div>

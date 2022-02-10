@@ -1,13 +1,31 @@
 <style>
+    :root {
+    --even: gray;
+    --odd: darkgray;
+    }
+#users{
+    display:inline-block;
+    width:auto;
+}
+
+#rooms{
+    display:inline-block;
+    width:auto;
+    background:orange;
+}
+
+
 .room{
     display:block;
-    margin-bottom:0.5em;
+}
+
+.room:last-of-type{
+      margin-bottom:0px;
 }
 
 .title{
     display:inline-block;
-    margin-left:10px;
-    margin-right:10px;
+    margin-right:1em;
     min-width:150px;
 }
 
@@ -17,9 +35,6 @@
     min-width:150px;
 }
 
-.room a{
-    color:blue;
-}
 .container{
     margin-top:10px;
 }
@@ -28,33 +43,68 @@
     display:inline-block;
 }
 
-.user_container{
-    margin-bottom:0.5em;
+.room_container:last-of-type{
+      margin-bottom:0px;
 }
 
-.room_container{
-    margin-bottom:0.5em;
+.room_container_link{
+    color:blue;
+    text-decoration:none;
 }
 
-.room_container:nth-child(odd){
-    background:gray;
+.user_container:last-of-type{
+      margin-bottom:0px;
 }
 
-.room_container:nth-child(even){
-    background:darkgray;
+.user_container img{
+    width:25px;
+    height:25px;
+    border:1px solid black;
+    vertical-align:middle;
+    margin-right:1em;
+}
+#rooms div{
+    padding:0.7em;
+    cursor: pointer;
 }
 
-.user_container:nth-child(odd){
-    background:gray;
+#rooms div:nth-child(even) {
+    background:var(--even);
 }
 
-.user_container:nth-child(even){
-    background:darkgray;
+#rooms div:nth-child(odd) {
+    background:var(--odd);
 }
 
+#rooms div:hover{
+    background-color:rgba(0, 0, 0, 0.8);
+    color:white;
+}
 
-.room_container.n
+#users div{
+    padding:0.7em;
+    cursor: pointer;
+}
+
+#users div:nth-child(even) {
+    background:var(--even);
+}
+
+#users div:nth-child(odd) {
+    background:var(--odd);
+}
+
+#users div:hover{
+    background-color:rgba(0, 0, 0, 0.8);
+    color:white;
+}
+
+.username{
+    display:inline-block;
+    min-width:100px;
+}
 </style>
+
 <div class="container">
   <%= button_to "Refresh Page", "", { :onclick => "history.go(0)" } %>
   <h4> Users </h4>

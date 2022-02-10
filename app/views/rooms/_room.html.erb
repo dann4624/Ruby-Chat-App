@@ -1,7 +1,11 @@
-<div class="room_container">
-    <span class="title"><%= room.title %></span>
-    <span class="description"><%= room.description %></span>
-    <a href="rooms/<%= room.id %>">
+<div class="room_container" onclick="window.location='rooms/<%= room.id %>'">
+    <span class="title">
+        <%= room.title %>
+    </span>
+    <span class="description">
+        <%= room.description %>
+    </span>
+    <span class="chevron">
         ➤
-    </a>
+    </span>
 </div>

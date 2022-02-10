@@ -13,10 +13,7 @@
 
     <%= f.submit 'Sign in' %>  
 <% end %>
+
 <br>
-<%= button_to "Sign in with Google", google_path, :method => "get", :disabled => true  %> 
-<br>
-<%= button_to "Sign in with Facebook", facebook_path, :method => "get", :disabled => true  %> 
-<br><br>
 <span>Don't have a user?</span> <%= link_to "Sign Up", new_user_path   %>
 

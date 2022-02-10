@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
   <style>
+  body{
+    padding:1em;
+    background:lightgray;
+  }
   nav{
     margin-bottom:1em;
+    background:darkgray;
+    padding:1em;
+    border:1px solid black;
   }
 
   nav a{
@@ -29,8 +36,8 @@
   </head>
   <header>
     <nav>
-      <%= link_to "Home", root_path %>
       <% if @current_user  %>
+        <%= link_to "Home", root_path %>
         <span id="username">
           <%= @current_user.username %>
         </span>
