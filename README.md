@@ -26,3 +26,7 @@ Admin Users can also edit and delete ANY message.
 Creation of of chatrooms are synchronous, while modification and deletions are not (in the sense that any modifications to the chat rooms or deletions will not appear to other users until they refresh the page).
 
 The same is true regarding sending and receiving messages. Sending and receiving messages are synchronous, deletion and modification of messages are not (in the sense that any modifications to messages will not appear to other users until they refresh the page or send a message themselves).
+
+Passwords are currently plain text. A future fix for this would be to hash the words.
+
+Email verification is not currently implemented, but the user-object have been prepared to support it.
